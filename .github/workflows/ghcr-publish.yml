@@ -2,7 +2,7 @@
 # Build and publish image to GHCR #
 ###################################
 
-name: CI
+name: Build and Publish
 on:
   push:
     branches: [main, pgschk-patch-1]
