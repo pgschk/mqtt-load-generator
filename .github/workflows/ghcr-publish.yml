@@ -1,0 +1,22 @@
+###################################
+# Build and publish image to GHCR #
+###################################
+
+name: publish
+on: [push]
+
+jobs:
+publish-mqtt-load-generator:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+- name: Login to GitHub Container Registry
+uses: docker/login-action@v1
+with:
+registry: ghcr.io
+username: ${{ github.actor }}
+password: ${{ secrets.GITHUB_TOKEN }}
+- name: Build and push mqtt-load-generator container
+run: |
+       docker build . --tag ghcr.io/pgschk/mqtt-load-generator:latest
+       docker push ghcr.io/pgschk/mqtt-load-generator:latest
